@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -16,7 +17,12 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {   
-            if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2)
+            if (Operators.Contains(req) && base.context.CalculatorState == CalculatorState.PROG)
+            {
+                base.context.CurrentStack.Push(req);
+            }
+
+            if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2 && base.context.CalculatorState == CalculatorState.Normal)
             {
                 var eval = new Evaluator();
                 base.context.CurrentStack.Push(req);

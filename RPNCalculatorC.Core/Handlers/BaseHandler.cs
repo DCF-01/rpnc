@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -27,15 +28,5 @@ namespace RPNCalculatorC.Core.Handlers
         {
             next = handler;
         }
-
-        /*protected void GetViewState(string inputBoxString = "")
-        {
-            var stack = new Stack<string>(new Stack<string>(this.context.CurrentStack));
-            stack.TryPop(out var val1);
-            stack.TryPop(out var val2);
-            stack.TryPop(out var val3);
-
-            context.ViewStack = new[] { this.context.sb.ToString(), val1 ?? string.Empty, val2 ?? string.Empty, val3 ?? string.Empty };
-        }*/
     }
 }

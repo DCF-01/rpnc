@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -14,9 +16,9 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if(req.Trim().ToLower() == "drop")
+            if(req.Trim().ToLower() == "drop" && this.context.CalculatorState == CalculatorState.Normal)
             {
-                base.context.CurrentStack.TryPop(out var el1);
+                this.context.CurrentStack.TryPop(out var el1);
             }
             else
             {

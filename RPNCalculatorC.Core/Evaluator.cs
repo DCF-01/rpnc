@@ -42,5 +42,43 @@ namespace RPNCalculatorC.Core
 
             return a;
         }
+
+        public int EvaluateExpression(string expression)
+        {
+            var stack = new Stack<int>();
+
+            for (int i = 0; i < expression.Length; i++)
+            {
+                if (int.TryParse(expression[i].ToString(), out var res))
+                {
+                    stack.Push(res);
+                }
+                else
+                {
+                    var a = stack.Pop();
+                    var b = stack.Pop();
+
+                    switch (expression[i].ToString().Trim().ToLower())
+                    {
+                        case "+":
+                            stack.Push(a + b);
+                            break;
+                        case "-":
+                            stack.Push(a - b);
+                            break;
+                        case "x":
+                            stack.Push(a * b);
+                            break;
+                        case "/":
+                            stack.Push(a / b);
+                            break;
+                        default:
+                            throw new ArgumentException("not an operand or operator");
+                    }
+                }
+            }
+
+            return stack.Pop();
+        }
     }
 }

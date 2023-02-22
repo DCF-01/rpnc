@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -14,19 +15,19 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "swap")
+            if (req.Trim().ToLower() == "swap" && this.context.CalculatorState == CalculatorState.Normal)
             {
-                if(base.context.CurrentStack.Count < 2)
+                if(this.context.CurrentStack.Count < 2)
                 {
                     return;
                 }
 
 
-                base.context.CurrentStack.TryPop(out var el1);
-                base.context.CurrentStack.TryPop(out var el2);
+                this.context.CurrentStack.TryPop(out var el1);
+                this.context.CurrentStack.TryPop(out var el2);
 
-                base.context.CurrentStack.Push(el1);
-                base.context.CurrentStack.Push(el2);
+                this.context.CurrentStack.Push(el1);
+                this.context.CurrentStack.Push(el2);
             }
             else
             {

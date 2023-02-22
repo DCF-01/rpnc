@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Strategy;
 
 namespace RPNCalculatorC.Core.Memento
 {
@@ -11,10 +12,17 @@ namespace RPNCalculatorC.Core.Memento
         public Stack<string> CurrentStack { get; set; } = new();
         public StringBuilder sb = new();
         public string[] ViewStack;
+        public CalculatorState CalculatorState = CalculatorState.Normal;
+        public Calculator Calculator = new Calculator();
 
         public DataContextMemento Save()
         {
             return new DataContextMemento(this);
+        }
+
+        public void SetState(CalculatorState calculatorState)
+        {
+            CalculatorState = calculatorState;
         }
 
         public void Restore(DataContextMemento memento)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -14,13 +15,15 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "enter")
+            if (req.Trim().ToLower() == "enter" && this.context.CalculatorState == CalculatorState.Normal)
             {
-                this.context.CurrentStack.Push(this.context.sb.ToString());
-                this.context.sb.Clear();
+                var strToPush = this.context.sb.ToString();
 
-                /*var l = this.context.CurrentStack.ToList();
-                l.Reverse();*/
+                if (!string.IsNullOrWhiteSpace(strToPush))
+                {
+                    this.context.CurrentStack.Push(this.context.sb.ToString());
+                    this.context.sb.Clear();
+                }
             }
             else
             {

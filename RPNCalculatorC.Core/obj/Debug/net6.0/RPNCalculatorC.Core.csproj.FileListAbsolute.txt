@@ -10,3 +10,15 @@ C:\Users\rzver\source\repos\RPNCalculatorC\RPNCalculatorC.Core\obj\Debug\net6.0\
 C:\Users\rzver\source\repos\RPNCalculatorC\RPNCalculatorC.Core\obj\Debug\net6.0\refint\RPNCalculatorC.Core.dll
 C:\Users\rzver\source\repos\RPNCalculatorC\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.pdb
 C:\Users\rzver\source\repos\RPNCalculatorC\RPNCalculatorC.Core\obj\Debug\net6.0\ref\RPNCalculatorC.Core.dll
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.csproj.AssemblyReference.cache
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.AssemblyInfoInputs.cache
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.AssemblyInfo.cs
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.csproj.CoreCompileInputs.cache
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.dll
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\refint\RPNCalculatorC.Core.dll
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\RPNCalculatorC.Core.pdb
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\bin\Debug\net6.0\RPNCalculatorC.Core.deps.json
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\bin\Debug\net6.0\RPNCalculatorC.Core.dll
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\bin\Debug\net6.0\RPNCalculatorC.Core.pdb
+C:\Users\RadoslavKezunovski\source\repos\rpnc\RPNCalculatorC.Core\obj\Debug\net6.0\ref\RPNCalculatorC.Core.dll
