@@ -9,31 +9,34 @@ namespace RPNCalculatorC.Core.Strategy
 {
     public class Calculator
     {
-        public IStrategy strategy { get; private set; } = new NormalStrategy();
-        public CalculatorState state { get; private set; } = CalculatorState.Normal;
+        public IStrategy Strategy { get; private set; } = new NormalStrategy();
+        public CalculatorState State { get; private set; } = CalculatorState.Normal;
+        private static Evaluator Evaluator = new Evaluator();
         public void SetStrategy(IStrategy strategy)
         {
-            this.strategy = strategy;
+            this.Strategy = strategy;
 
             if(strategy is NormalStrategy)
             {
-                this.state = CalculatorState.Normal;
+                this.State = CalculatorState.Normal;
             }
 
             if(strategy is ProgStrategy)
             {
-                this.state = CalculatorState.PROG;
+                this.State = CalculatorState.PROG;
             }
         }
 
         public void SetState(CalculatorState calculatorState)
         {
-            state = calculatorState;
+            State = calculatorState;
         }
 
-        public void Exec(DataContext dataContext, string req)
+        public void ExecStrategy(DataContext dataContext, string req)
         {
-            this.strategy.Eval(dataContext, req);
+            this.Strategy.Execute(dataContext, req);
         }
+
+
     }
 }

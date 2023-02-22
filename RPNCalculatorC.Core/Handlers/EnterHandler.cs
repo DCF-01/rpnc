@@ -15,7 +15,7 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "enter" && this.context.CalculatorState == CalculatorState.Normal)
+            if (req.Trim().ToLower() == "enter" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 var strToPush = this.context.sb.ToString();
 

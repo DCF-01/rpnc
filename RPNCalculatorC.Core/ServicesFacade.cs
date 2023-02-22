@@ -15,7 +15,7 @@ namespace RPNCalculatorC.Core
         public string[] Calc(string s)
         {
 
-            DataContext.Calculator.Exec(DataContext, s);
+            DataContext.Calculator.ExecStrategy(DataContext, s);
 
             return GetViewState();
         }

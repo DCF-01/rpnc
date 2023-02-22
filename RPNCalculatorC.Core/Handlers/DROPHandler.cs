@@ -16,7 +16,7 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if(req.Trim().ToLower() == "drop" && this.context.CalculatorState == CalculatorState.Normal)
+            if(req.Trim().ToLower() == "drop" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.CurrentStack.TryPop(out var el1);
             }

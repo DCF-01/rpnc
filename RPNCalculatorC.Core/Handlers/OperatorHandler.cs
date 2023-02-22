@@ -17,12 +17,12 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {   
-            if (Operators.Contains(req) && base.context.CalculatorState == CalculatorState.PROG)
+            if (Operators.Contains(req) && this.context.Calculator.State == CalculatorState.PROG)
             {
                 base.context.CurrentStack.Push(req);
             }
 
-            if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2 && base.context.CalculatorState == CalculatorState.Normal)
+            else if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2 && this.context.Calculator.State == CalculatorState.Normal)
             {
                 var eval = new Evaluator();
                 base.context.CurrentStack.Push(req);

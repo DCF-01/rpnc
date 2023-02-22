@@ -15,7 +15,7 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "swap" && this.context.CalculatorState == CalculatorState.Normal)
+            if (req.Trim().ToLower() == "swap" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 if(this.context.CurrentStack.Count < 2)
                 {

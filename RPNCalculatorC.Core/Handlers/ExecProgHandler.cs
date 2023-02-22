@@ -16,10 +16,9 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "exec" && this.context.CalculatorState == CalculatorState.PROG)
+            if (req.Trim().ToLower() == "exec" && this.context.Calculator.State == CalculatorState.PROG)
             {
-                var ev = new Evaluator();
-                ev.EvaluateExpression(this.context.sb.ToString());
+                this.context.Calculator.ExecStrategy(this.context, this.context.sb.ToString());
             }
             else
             {

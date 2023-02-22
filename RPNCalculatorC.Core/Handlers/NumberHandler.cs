@@ -14,9 +14,15 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 this.context.sb.Append(req);
 
-                if (this.context.CalculatorState == CalculatorState.Save)
+                if (this.context.Calculator.State == CalculatorState.Save)
                 {
                     this.context.Storage[x] = this.context.sb.ToString();
+                    this.context.Calculator.SetState(CalculatorState.Normal);
+                }
+                else if(this.context.Calculator.State == CalculatorState.Recall)
+                {
+                    this.context.Storage[x] = this.context.sb.ToString();
+                    this.context.Calculator.SetState(CalculatorState.Normal);
                 }
             }
             else

@@ -5,7 +5,7 @@ namespace RPNCalculatorC.Core.Strategy
 {
     public class NormalStrategy : IStrategy
     {
-        public void Eval(DataContext dataContext, string req)
+        public void Execute(DataContext dataContext, string req)
         {
             var stateHandler = new StateHandler(dataContext);
             var CEHandler = new CEHandler(dataContext);

@@ -9,6 +9,6 @@ namespace RPNCalculatorC.Core.Strategy
 {
     public interface IStrategy
     {
-        void Eval(DataContext dataContext, string req);
+        void Execute(DataContext dataContext, string req);
     }
 }

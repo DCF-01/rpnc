@@ -15,7 +15,7 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "STO")
+            if (req.Trim().ToLower() == "STO" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.Calculator.SetState(CalculatorState.Save);
             }

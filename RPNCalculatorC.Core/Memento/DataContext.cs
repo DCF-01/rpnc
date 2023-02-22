@@ -12,7 +12,6 @@ namespace RPNCalculatorC.Core.Memento
         public Stack<string> CurrentStack { get; set; } = new();
         public StringBuilder sb = new();
         public string[] ViewStack;
-        public CalculatorState CalculatorState = CalculatorState.Normal;
         public Calculator Calculator = new Calculator();
         public string[] Storage = new string[10];
 
@@ -21,10 +20,10 @@ namespace RPNCalculatorC.Core.Memento
             return new DataContextMemento(this);
         }
 
-        public void SetState(CalculatorState calculatorState)
+        /*public void SetState(CalculatorState calculatorState)
         {
             CalculatorState = calculatorState;
-        }
+        }*/
 
         public void Restore(DataContextMemento memento)
         {

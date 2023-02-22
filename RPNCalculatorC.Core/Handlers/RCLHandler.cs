@@ -15,9 +15,9 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "RCL" && this.context.Calculator.state == CalculatorState.Save)
+            if (req.Trim().ToLower() == "RCL" && this.context.Calculator.State == CalculatorState.Normal)
             {
-                this.context.Calculator.SetState(CalculatorState.Normal);
+                this.context.Calculator.SetState(CalculatorState.Recall);
             }
             else
             {

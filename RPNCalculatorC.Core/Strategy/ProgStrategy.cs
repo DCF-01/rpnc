@@ -10,7 +10,7 @@ namespace RPNCalculatorC.Core.Strategy
 {
     internal class ProgStrategy : IStrategy
     {
-        public void Eval(DataContext dataContext, string req)
+        public void Execute(DataContext dataContext, string req)
         {
             var stateHandler = new StateHandler(dataContext);
             var ceHandler = new CEHandler(dataContext);
