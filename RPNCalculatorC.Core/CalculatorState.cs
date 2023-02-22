@@ -9,6 +9,7 @@ namespace RPNCalculatorC.Core
     public enum CalculatorState
     {
         Normal,
-        PROG
+        PROG,
+        Save
     }
 }

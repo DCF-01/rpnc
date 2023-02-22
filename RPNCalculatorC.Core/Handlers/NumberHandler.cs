@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RPNCalculatorC.Core.Memento;
+﻿using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -17,7 +12,12 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (int.TryParse(req, out var x))
             {
-                base.context.sb.Append(req);
+                this.context.sb.Append(req);
+
+                if (this.context.CalculatorState == CalculatorState.Save)
+                {
+                    this.context.Storage[x] = this.context.sb.ToString();
+                }
             }
             else
             {

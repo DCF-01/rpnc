@@ -14,6 +14,7 @@ namespace RPNCalculatorC.Core.Memento
         public string[] ViewStack;
         public CalculatorState CalculatorState = CalculatorState.Normal;
         public Calculator Calculator = new Calculator();
+        public string[] Storage = new string[10];
 
         public DataContextMemento Save()
         {

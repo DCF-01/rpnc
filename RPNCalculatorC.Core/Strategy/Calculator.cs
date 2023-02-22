@@ -26,6 +26,11 @@ namespace RPNCalculatorC.Core.Strategy
             }
         }
 
+        public void SetState(CalculatorState calculatorState)
+        {
+            state = calculatorState;
+        }
+
         public void Exec(DataContext dataContext, string req)
         {
             this.strategy.Eval(dataContext, req);
