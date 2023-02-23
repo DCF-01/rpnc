@@ -8,29 +8,6 @@ namespace RPNCalculatorC.Core
         public static List<string> TrigOperators = new() { "sin", "cos", "tan", "asin", "acos", "atan" };
         
 
-        /*public double Evaluate(Stack<string> stack)
-        {
-            var op = stack.Pop();
-
-            double res = 0;
-            if (Operators.Contains(op))
-            {
-                var x = int.Parse(stack.Pop());
-                var y = int.Parse(stack.Pop());
-
-                res = CalcResult(op.Trim().ToLower(), x, y);
-            }
-            else if (TrigOperators.Contains(op))
-            {
-                double x = int.Parse(stack.Pop());
-
-                res = CalcTrigResult(op, x);
-            }
-
-            return res;
-            
-        }*/
-
         public double EvaluateExpression(List<IRequest> expression)
         {
             var stack = new Stack<double>();
