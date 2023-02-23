@@ -12,9 +12,9 @@ namespace RPNCalculatorC.Core.Handlers
         public REDOHandler(DataContext dataContext) : base(dataContext)
         {
         }
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "redo")
+            if (req.Value == "redo")
             {
                 var redoState = this.mementoCaretaker.Redo();
 
@@ -24,9 +24,7 @@ namespace RPNCalculatorC.Core.Handlers
                 }
 
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPNCalculatorC.Core.Strategy;
+using RPNCalculatorC.Core.Handlers;
 
 namespace RPNCalculatorC.Core.Memento
 {
@@ -14,7 +15,7 @@ namespace RPNCalculatorC.Core.Memento
         {
             var newState = new DataContext();
             newState.CurrentStack = new Stack<string>(new Stack<string>(state.CurrentStack));
-            newState.sb = new StringBuilder(state.sb.ToString());
+            newState.sb = state.sb.ToList();
             newState.Storage = state.Storage.ToArray();
 
             newState.Calculator = new Calculator();

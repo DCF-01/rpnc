@@ -13,17 +13,16 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req == "CE")
+            if (req.Value == "CE")
             {
                 this.context.CurrentStack.Clear();
                 this.context.sb.Clear();
                 //MementoCaretaker.PushToStack(this.context);
             }
             
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

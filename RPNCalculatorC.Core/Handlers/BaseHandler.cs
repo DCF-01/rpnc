@@ -17,7 +17,7 @@ namespace RPNCalculatorC.Core.Handlers
             context = dataContext;
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
             if(this.next != null)
             {
@@ -25,13 +25,14 @@ namespace RPNCalculatorC.Core.Handlers
             }
             else
             {
-                if ((req.Trim().ToLower() != "undo") && (req.Trim().ToLower() != "redo"))
+                if ((req.Value != "undo") && (req.Value != "redo"))
                 {
                     mementoCaretaker.PushToStack(context);
 
-                    if(context.Calculator.State == CalculatorState.Undo)
+                    if(context.Calculator.IsUndo)
                     {
                         mementoCaretaker.ResetRedo();
+                        context.Calculator.IsUndo = false;
                     }
                 }
                 

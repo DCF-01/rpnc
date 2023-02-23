@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
-    public interface IHandler
+    public interface IRequest
     {
-        void Handle(IRequest req);
-        void SetNext(IHandler handler);
+        string Value { get; }
     }
 }

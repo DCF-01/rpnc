@@ -13,20 +13,19 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "undo")
+            if (req.Value == "undo")
             {
                 var undoState = this.mementoCaretaker.Undo();
 
-                if(undoState != null)
+                if (undoState != null)
                 {
                     this.context.Restore(undoState);
+                    this.context.Calculator.IsUndo = true;
                 }
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

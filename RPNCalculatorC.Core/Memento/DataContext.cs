@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RPNCalculatorC.Core.Strategy;
+﻿using RPNCalculatorC.Core.Strategy;
+using RPNCalculatorC.Core.Handlers;
 
 namespace RPNCalculatorC.Core.Memento
 {
     public class DataContext
     {
         public Stack<string> CurrentStack { get; set; } = new();
-        public StringBuilder sb = new();
+        public List<IRequest> sb = new();
         public Calculator Calculator = new Calculator();
         public string[] Storage = new string[10];
 

@@ -13,17 +13,19 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "enter" && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Value == "enter" && 
+                (this.context.Calculator.State == CalculatorState.Normal || 
+                this.context.Calculator.State == CalculatorState.DEG || 
+                this.context.Calculator.State == CalculatorState.RAD))
             {
                 var strToPush = this.context.sb.ToString();
 
                 if (!string.IsNullOrWhiteSpace(strToPush))
                 {
-                    this.context.CurrentStack.Push(this.context.sb.ToString());
+                    this.context.CurrentStack.Push(string.Join("", this.context.sb.Select(x => x.Value).ToList()));
                     this.context.sb.Clear();
-                    //MementoCaretaker.PushToStack(this.context);
                 }
             }
             

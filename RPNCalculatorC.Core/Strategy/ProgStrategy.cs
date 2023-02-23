@@ -8,9 +8,9 @@ using RPNCalculatorC.Core.Handlers;
 
 namespace RPNCalculatorC.Core.Strategy
 {
-    internal class ProgStrategy : IStrategy
+    public class ProgStrategy : IStrategy
     {
-        public void Execute(DataContext dataContext, string req)
+        public void Execute(DataContext dataContext, IRequest req)
         {
             var stateHandler = new StateHandler(dataContext);
             var ceHandler = new CEHandler(dataContext);

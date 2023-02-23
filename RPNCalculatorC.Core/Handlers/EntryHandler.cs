@@ -13,9 +13,9 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if ((req.Trim().ToLower() != "undo") && (req.Trim().ToLower() != "redo"))
+            if ((req.Value != "undo") && (req.Value != "redo"))
             {
                 //MementoCaretaker.PushToStack(this.context);
             }

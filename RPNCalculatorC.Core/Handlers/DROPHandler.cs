@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPNCalculatorC.Core.Memento;
-using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -14,16 +13,14 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if(req.Trim().ToLower() == "drop" && this.context.Calculator.State == CalculatorState.Normal)
+            if(req.Value == "drop" && this.context.Calculator.State == CalculatorState.Normal)
             {
-                this.context.CurrentStack.TryPop(out var el1);
-                //MementoCaretaker.PushToStack(this.context);
+                this.context.CurrentStack.TryPop(out var el);
             }
             
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

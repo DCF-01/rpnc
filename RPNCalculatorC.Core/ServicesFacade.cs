@@ -10,14 +10,16 @@ namespace RPNCalculatorC.Core
 
         public string[] Calc(string req)
         {
-            if (req.Trim().ToLower() == "reset")
+            IRequest request = new Request(req.Trim().ToLower());
+
+            if (request.Value == "reset")
             {
                 ResetAppState();
                 Calc("");
                 return GetViewState();
             }
 
-            DataContext.Calculator.ExecStrategy(DataContext, req);
+            DataContext.Calculator.ExecStrategy(DataContext, request);
 
             return GetViewState();
         }
@@ -30,7 +32,7 @@ namespace RPNCalculatorC.Core
             stack.TryPop(out var val3);
 
             return new[] {
-                DataContext.sb.ToString(),
+                string.Join("", DataContext.sb.Select(x => x.Value).ToList()),
                 val1 ?? string.Empty,
                 val2 ?? string.Empty,
                 val3 ?? string.Empty,

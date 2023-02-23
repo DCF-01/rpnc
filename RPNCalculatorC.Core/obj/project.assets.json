@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\RadoslavKezunovski\\.nuget\\packages\\": {}
+    "C:\\Users\\rzver\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj",
+      "projectUniqueName": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj",
       "projectName": "RPNCalculatorC.Core",
-      "projectPath": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj",
-      "packagesPath": "C:\\Users\\RadoslavKezunovski\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC.Core\\obj\\",
+      "projectPath": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj",
+      "packagesPath": "C:\\Users\\rzver\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\RadoslavKezunovski\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rzver\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

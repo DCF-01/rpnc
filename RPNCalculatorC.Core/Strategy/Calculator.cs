@@ -1,9 +1,5 @@
 ﻿using RPNCalculatorC.Core.Memento;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RPNCalculatorC.Core.Handlers;
 
 namespace RPNCalculatorC.Core.Strategy
 {
@@ -11,6 +7,7 @@ namespace RPNCalculatorC.Core.Strategy
     {
         public IStrategy Strategy { get; private set; } = new NormalStrategy();
         public CalculatorState State { get; private set; } = CalculatorState.Normal;
+        public bool IsUndo { get; set; } = false;
         public Evaluator Evaluator = new Evaluator();
         public void SetStrategy(IStrategy strategy)
         {
@@ -32,7 +29,7 @@ namespace RPNCalculatorC.Core.Strategy
             State = calculatorState;
         }
 
-        public void ExecStrategy(DataContext dataContext, string req)
+        public void ExecStrategy(DataContext dataContext, IRequest req)
         {
             this.Strategy.Execute(dataContext, req);
         }

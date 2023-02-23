@@ -12,6 +12,7 @@ namespace RPNCalculatorC.Core
         PROG,
         Store,
         Recall,
-        Undo
+        RAD,
+        DEG
     }
 }

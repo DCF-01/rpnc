@@ -5,9 +5,10 @@ namespace RPNCalculatorC.Core.Strategy
 {
     public class NormalStrategy : IStrategy
     {
-        public void Execute(DataContext dataContext, string req)
+        public void Execute(DataContext dataContext, IRequest req)
         {
             var entryHandler = new EntryHandler(dataContext);
+            var trigHandler = new TrigHandler(dataContext);
             var stateHandler = new StateHandler(dataContext);
             var CEHandler = new CEHandler(dataContext);
             var EnterHandler = new EnterHandler(dataContext);
@@ -21,7 +22,8 @@ namespace RPNCalculatorC.Core.Strategy
             var UNDOHandler = new UNDOHandler(dataContext);
             var REDOHandler = new REDOHandler(dataContext);
 
-            entryHandler.SetNext(stateHandler);
+            entryHandler.SetNext(trigHandler);
+            trigHandler.SetNext(stateHandler);
             stateHandler.SetNext(CEHandler);
             CEHandler.SetNext(EnterHandler);
             EnterHandler.SetNext(NumberHandler);

@@ -13,11 +13,11 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "swap" && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Value == "swap" && this.context.Calculator.State == CalculatorState.Normal)
             {
-                if(this.context.CurrentStack.Count < 2)
+                if (this.context.CurrentStack.Count < 2)
                 {
                     return;
                 }
@@ -27,11 +27,8 @@ namespace RPNCalculatorC.Core.Handlers
 
                 this.context.CurrentStack.Push(el1);
                 this.context.CurrentStack.Push(el2);
-                //MementoCaretaker.PushToStack(this.context);
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

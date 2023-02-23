@@ -13,16 +13,13 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "sto" && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Value == "sto" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.Calculator.SetState(CalculatorState.Store);
-                //MementoCaretaker.PushToStack(this.context);
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

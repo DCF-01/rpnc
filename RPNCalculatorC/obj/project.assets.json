@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\RadoslavKezunovski\\.nuget\\packages\\": {}
+    "C:\\Users\\rzver\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC\\RPNCalculatorC.csproj",
+      "projectUniqueName": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC\\RPNCalculatorC.csproj",
       "projectName": "RPNCalculatorC",
-      "projectPath": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC\\RPNCalculatorC.csproj",
-      "packagesPath": "C:\\Users\\RadoslavKezunovski\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC\\obj\\",
+      "projectPath": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC\\RPNCalculatorC.csproj",
+      "packagesPath": "C:\\Users\\rzver\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\RadoslavKezunovski\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rzver\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj": {
-              "projectPath": "C:\\Users\\RadoslavKezunovski\\source\\repos\\rpnc\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj"
+            "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj": {
+              "projectPath": "C:\\Users\\rzver\\source\\repos\\RPNCalculatorC\\RPNCalculatorC.Core\\RPNCalculatorC.Core.csproj"
             }
           }
         }
@@ -86,7 +86,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

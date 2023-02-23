@@ -14,13 +14,13 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "exec" && this.context.Calculator.State == CalculatorState.PROG)
+            if (req.Value == "exec" && this.context.Calculator.State == CalculatorState.PROG)
             {
-                var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.sb.ToString());
+                var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.sb);
                 this.context.sb.Clear();
-                this.context.sb.Append(res.ToString());
+                this.context.sb.Add(new Request(res.ToString()));
             }
             
                 base.Handle(req);

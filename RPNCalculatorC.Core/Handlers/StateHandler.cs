@@ -14,23 +14,17 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if (req.Trim().ToLower() == "prog")
+            if (req.Value == "prog")
             {
                 this.context.Calculator.SetStrategy(new ProgStrategy());
             }
-            else if(req.Trim().ToLower() == "normal")
+            else if (req.Value == "normal")
             {
                 this.context.Calculator.SetStrategy(new NormalStrategy());
             }
-            /*else if(req.Trim().ToLower() == "save")
-            {
-                this.context.Calculator.SetState(CalculatorState.Store);
-            }*/
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

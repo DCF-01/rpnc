@@ -13,13 +13,12 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(string req)
+        public void Handle(IRequest req)
         {
-            if(req.Trim().ToLower() == "chs" && this.context.CurrentStack.Count >= 1 && this.context.Calculator.State == CalculatorState.Normal)
+            if(req.Value == "chs" && this.context.CurrentStack.Count >= 1 && this.context.Calculator.State == CalculatorState.Normal)
             {
                 int x = int.Parse(this.context.CurrentStack.Pop()) * -1;
                 this.context.CurrentStack.Push(x.ToString());
-                //MementoCaretaker.PushToStack(this.context);
             }
             
                 base.Handle(req);
