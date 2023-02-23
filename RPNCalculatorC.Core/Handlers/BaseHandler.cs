@@ -10,8 +10,8 @@ namespace RPNCalculatorC.Core.Handlers
     public abstract class BaseHandler : IHandler
     {
         protected DataContext context { get; set; }
+        protected MementoCaretaker mementoCaretaker => MementoCaretaker.GetInstance();
         private IHandler next { get; set; }
-        protected bool isFirst { get; set; }
         public BaseHandler(DataContext dataContext)
         {
             context = dataContext;
@@ -27,8 +27,14 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 if ((req.Trim().ToLower() != "undo") && (req.Trim().ToLower() != "redo"))
                 {
-                    MementoCaretaker.PushToStack(context);
+                    mementoCaretaker.PushToStack(context);
+
+                    if(context.Calculator.State == CalculatorState.Undo)
+                    {
+                        mementoCaretaker.ResetRedo();
+                    }
                 }
+                
             }
         }
 

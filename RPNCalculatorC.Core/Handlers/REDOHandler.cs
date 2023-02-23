@@ -16,7 +16,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Trim().ToLower() == "redo")
             {
-                var redoState = MementoCaretaker.Redo();
+                var redoState = this.mementoCaretaker.Redo();
 
                 if (redoState != null)
                 {

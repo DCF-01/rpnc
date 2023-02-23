@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Memento
 {
+    //Singleton
     public class MementoCaretaker
     {
-        private static Stack<DataContextMemento> _undoStack = new();
-        private static Stack<DataContextMemento> _redoStack = new();
-        
-        public static DataContextMemento Redo()
+        private static object _lock = new object();
+        private static MementoCaretaker _instance;
+        private Stack<DataContextMemento> _undoStack = new();
+        private Stack<DataContextMemento> _redoStack = new();
+
+        private MementoCaretaker()
+        {
+
+        }
+
+        public DataContextMemento Redo()
         {
             if (_redoStack.Count > 0)
             {
@@ -19,7 +27,7 @@ namespace RPNCalculatorC.Core.Memento
                 _undoStack.Push(el);
 
                 _redoStack.TryPeek(out var res);
-                return res;
+                return res ?? el;
             }
             else
             {
@@ -27,7 +35,7 @@ namespace RPNCalculatorC.Core.Memento
             }
         }
 
-        public static DataContextMemento Undo()
+        public DataContextMemento Undo()
         {
             if (_undoStack.Count > 0)
             {
@@ -35,7 +43,7 @@ namespace RPNCalculatorC.Core.Memento
                 _redoStack.Push(el);
 
                 _undoStack.TryPeek(out var res);
-                return res;
+                return res ?? el;
             }
             else
             {
@@ -43,9 +51,9 @@ namespace RPNCalculatorC.Core.Memento
             }
         }
 
-        public static void PushToStack(DataContext currentContext)
+        public void PushToStack(DataContext currentContext)
         {
-            if(currentContext != null)
+            if (currentContext != null)
             {
                 _undoStack.Push(currentContext.Save());
             }
@@ -53,8 +61,29 @@ namespace RPNCalculatorC.Core.Memento
 
         public static void Reset()
         {
-            _undoStack = new();
+            _instance = new MementoCaretaker();
+        }
+
+        public void ResetRedo()
+        {
             _redoStack = new();
+        }
+
+        public static MementoCaretaker GetInstance()
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new MementoCaretaker();
+                        return _instance;
+                    }
+                }
+            }
+
+            return _instance;
         }
 
     }

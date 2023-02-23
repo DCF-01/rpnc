@@ -17,7 +17,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Trim().ToLower() == "undo")
             {
-                var undoState = MementoCaretaker.Undo();
+                var undoState = this.mementoCaretaker.Undo();
 
                 if(undoState != null)
                 {

@@ -11,7 +11,7 @@ namespace RPNCalculatorC.Core
         Normal,
         PROG,
         Store,
-        Recall
-
+        Recall,
+        Undo
     }
 }
