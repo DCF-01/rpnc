@@ -19,11 +19,11 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 int x = int.Parse(this.context.CurrentStack.Pop()) * -1;
                 this.context.CurrentStack.Push(x.ToString());
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

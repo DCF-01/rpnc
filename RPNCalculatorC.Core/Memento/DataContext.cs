@@ -11,7 +11,7 @@ namespace RPNCalculatorC.Core.Memento
     {
         public Stack<string> CurrentStack { get; set; } = new();
         public StringBuilder sb = new();
-        public string[] ViewStack;
+        //public string[] ViewStack = new string[4];
         public Calculator Calculator = new Calculator();
         public string[] Storage = new string[10];
 
@@ -30,7 +30,8 @@ namespace RPNCalculatorC.Core.Memento
             var state = memento.GetState();
             this.CurrentStack = state.CurrentStack;
             this.sb = state.sb;
-            this.ViewStack = state.ViewStack;
+            this.Storage = state.Storage;
+            //this.ViewStack = state.ViewStack;
 
         }
     }

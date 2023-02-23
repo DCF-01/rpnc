@@ -11,7 +11,7 @@ namespace RPNCalculatorC.Core.Strategy
     {
         public IStrategy Strategy { get; private set; } = new NormalStrategy();
         public CalculatorState State { get; private set; } = CalculatorState.Normal;
-        private static Evaluator Evaluator = new Evaluator();
+        public Evaluator Evaluator = new Evaluator();
         public void SetStrategy(IStrategy strategy)
         {
             this.Strategy = strategy;
@@ -36,7 +36,5 @@ namespace RPNCalculatorC.Core.Strategy
         {
             this.Strategy.Execute(dataContext, req);
         }
-
-
     }
 }

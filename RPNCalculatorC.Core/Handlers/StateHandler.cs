@@ -26,12 +26,11 @@ namespace RPNCalculatorC.Core.Handlers
             }
             else if(req.Trim().ToLower() == "save")
             {
-                this.context.Calculator.SetState(CalculatorState.Save);
+                this.context.Calculator.SetState(CalculatorState.Store);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

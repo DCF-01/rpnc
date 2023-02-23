@@ -12,23 +12,26 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (int.TryParse(req, out var x))
             {
-                this.context.sb.Append(req);
-
-                if (this.context.Calculator.State == CalculatorState.Save)
+                if (this.context.Calculator.State == CalculatorState.Store)
                 {
                     this.context.Storage[x] = this.context.sb.ToString();
                     this.context.Calculator.SetState(CalculatorState.Normal);
                 }
                 else if(this.context.Calculator.State == CalculatorState.Recall)
                 {
-                    this.context.Storage[x] = this.context.sb.ToString();
+                    this.context.sb.Clear();
+                    this.context.sb.Append(this.context.Storage[x]);
                     this.context.Calculator.SetState(CalculatorState.Normal);
                 }
+                else
+                {
+                    this.context.sb.Append(req);
+                }
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

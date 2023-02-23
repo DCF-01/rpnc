@@ -18,12 +18,13 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Trim().ToLower() == "exec" && this.context.Calculator.State == CalculatorState.PROG)
             {
-                this.context.Calculator.ExecStrategy(this.context, this.context.sb.ToString());
+                var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.sb.ToString());
+                this.context.sb.Clear();
+                this.context.sb.Append(res.ToString());
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

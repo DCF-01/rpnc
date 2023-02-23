@@ -7,6 +7,7 @@ namespace RPNCalculatorC.Core.Strategy
     {
         public void Execute(DataContext dataContext, string req)
         {
+            var entryHandler = new EntryHandler(dataContext);
             var stateHandler = new StateHandler(dataContext);
             var CEHandler = new CEHandler(dataContext);
             var EnterHandler = new EnterHandler(dataContext);
@@ -15,7 +16,12 @@ namespace RPNCalculatorC.Core.Strategy
             var SWAPHandler = new SWAPHandler(dataContext);
             var DROPHandler = new DROPHandler(dataContext);
             var CHSHandler = new CHSHandler(dataContext);
+            var STOHandler = new STOHandler(dataContext);
+            var RCLHandler = new RCLHandler(dataContext);
+            var UNDOHandler = new UNDOHandler(dataContext);
+            var REDOHandler = new REDOHandler(dataContext);
 
+            entryHandler.SetNext(stateHandler);
             stateHandler.SetNext(CEHandler);
             CEHandler.SetNext(EnterHandler);
             EnterHandler.SetNext(NumberHandler);
@@ -23,8 +29,12 @@ namespace RPNCalculatorC.Core.Strategy
             OperatorHandler.SetNext(SWAPHandler);
             SWAPHandler.SetNext(DROPHandler);
             DROPHandler.SetNext(CHSHandler);
+            CHSHandler.SetNext(STOHandler);
+            STOHandler.SetNext(RCLHandler);
+            RCLHandler.SetNext(UNDOHandler);
+            UNDOHandler.SetNext(REDOHandler);
 
-            stateHandler.Handle(req);
+            entryHandler.Handle(req);
         }
     }
 }

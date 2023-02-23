@@ -17,11 +17,15 @@ namespace RPNCalculatorC.Core.Strategy
             var numberHandler = new NumberHandler(dataContext);
             var operatorHandler = new OperatorHandler(dataContext);
             var execProgHandler = new ExecProgHandler(dataContext);
+            var UNDOHandler = new UNDOHandler(dataContext);
+            var REDOHandler = new REDOHandler(dataContext);
 
             stateHandler.SetNext(ceHandler);
             ceHandler.SetNext(numberHandler);
             numberHandler.SetNext(operatorHandler);
             operatorHandler.SetNext(execProgHandler);
+            execProgHandler.SetNext(UNDOHandler);
+            UNDOHandler.SetNext(REDOHandler);
 
             stateHandler.Handle(req);
         }

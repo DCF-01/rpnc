@@ -10,7 +10,7 @@ namespace RPNCalculatorC.Core
     {
         Normal,
         PROG,
-        Save,
+        Store,
         Recall
 
     }

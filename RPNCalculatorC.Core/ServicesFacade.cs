@@ -6,38 +6,42 @@ namespace RPNCalculatorC.Core
 {
     public class ServicesFacade
     {
-        /*public static Stack<string> CurrentStack { get; set; } = new();
-        public static StringBuilder sb = new();
-        public Evaluator Evaluator = new Evaluator();
-        public static List<string> Operators = new() { "-", "+", "/", "*" };*/
         public static DataContext DataContext = new DataContext();
 
-        public string[] Calc(string s)
+        public string[] Calc(string req)
         {
+            if (req.Trim().ToLower() == "reset")
+            {
+                ResetAppState();
+                return GetViewState();
+            }
 
-            DataContext.Calculator.ExecStrategy(DataContext, s);
+            DataContext.Calculator.ExecStrategy(DataContext, req);
 
             return GetViewState();
         }
 
-        protected string[] GetViewState()
+        protected string[] GetViewState(string message = "")
         {
             var stack = new Stack<string>(new Stack<string>(DataContext.CurrentStack));
             stack.TryPop(out var val1);
             stack.TryPop(out var val2);
             stack.TryPop(out var val3);
 
-            return new[] { DataContext.sb.ToString(), val1 ?? string.Empty, val2 ?? string.Empty, val3 ?? string.Empty };
+            return new[] {
+                DataContext.sb.ToString(),
+                val1 ?? string.Empty,
+                val2 ?? string.Empty,
+                val3 ?? string.Empty,
+                message,
+                DataContext.Calculator.State.ToString()
+            };
         }
 
-        /*private string[] FormatResult(string str)
+        private void ResetAppState()
         {
-            var stack = new Stack<string>(new Stack<string>(CurrentStack));
-            stack.TryPop(out var val1);
-            stack.TryPop(out var val2);
-            stack.TryPop(out var val3);
-
-            return new[] { str, val1 ?? string.Empty, val2 ?? string.Empty, val3 ?? string.Empty };
-        }*/
+            DataContext = new DataContext();
+            MementoCaretaker.Reset();
+        }
     }
 }

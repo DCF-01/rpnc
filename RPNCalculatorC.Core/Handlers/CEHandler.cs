@@ -19,11 +19,11 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 this.context.CurrentStack.Clear();
                 this.context.sb.Clear();
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

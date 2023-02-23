@@ -15,14 +15,15 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "RCL" && this.context.Calculator.State == CalculatorState.Normal)
+            
+            if (req.Trim().ToLower() == "rcl" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.Calculator.SetState(CalculatorState.Recall);
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

@@ -19,21 +19,22 @@ namespace RPNCalculatorC.Core.Handlers
         {   
             if (Operators.Contains(req) && this.context.Calculator.State == CalculatorState.PROG)
             {
-                base.context.CurrentStack.Push(req);
+                this.context.sb.Append(req);
             }
 
             else if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2 && this.context.Calculator.State == CalculatorState.Normal)
             {
                 var eval = new Evaluator();
-                base.context.CurrentStack.Push(req);
-                var res = eval.Evaluate(base.context.CurrentStack).ToString();
-                base.context.CurrentStack.Push(res);
-                base.context.sb.Clear();
+                this.context.CurrentStack.Push(req);
+
+                var res = this.context.Calculator.Evaluator.Evaluate(this.context.CurrentStack).ToString();
+                this.context.CurrentStack.Push(res);
+                this.context.sb.Clear();
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

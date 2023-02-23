@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
-    public class STOHandler : BaseHandler, IHandler
+    public class REDOHandler : BaseHandler, IHandler
     {
-        public STOHandler(DataContext dataContext) : base(dataContext)
+        public REDOHandler(DataContext dataContext) : base(dataContext)
         {
         }
-
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "sto" && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Trim().ToLower() == "redo")
             {
-                this.context.Calculator.SetState(CalculatorState.Store);
-                //MementoCaretaker.PushToStack(this.context);
+                var redoState = MementoCaretaker.Redo();
+
+                if (redoState != null)
+                {
+                    this.context.Restore(redoState);
+                }
+
             }
             
                 base.Handle(req);

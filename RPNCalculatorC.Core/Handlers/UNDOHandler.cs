@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
-    public class STOHandler : BaseHandler, IHandler
+    public class UNDOHandler : BaseHandler, IHandler
     {
-        public STOHandler(DataContext dataContext) : base(dataContext)
+        public UNDOHandler(DataContext dataContext) : base(dataContext)
         {
         }
 
         public void Handle(string req)
         {
-            if (req.Trim().ToLower() == "sto" && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Trim().ToLower() == "undo")
             {
-                this.context.Calculator.SetState(CalculatorState.Store);
-                //MementoCaretaker.PushToStack(this.context);
+                var undoState = MementoCaretaker.Undo();
+
+                if(undoState != null)
+                {
+                    this.context.Restore(undoState);
+                }
             }
             
                 base.Handle(req);

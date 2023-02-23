@@ -23,12 +23,12 @@ namespace RPNCalculatorC.Core.Handlers
                 {
                     this.context.CurrentStack.Push(this.context.sb.ToString());
                     this.context.sb.Clear();
+                    //MementoCaretaker.PushToStack(this.context);
                 }
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
 
         }
     }

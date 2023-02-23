@@ -22,17 +22,16 @@ namespace RPNCalculatorC.Core.Handlers
                     return;
                 }
 
-
                 this.context.CurrentStack.TryPop(out var el1);
                 this.context.CurrentStack.TryPop(out var el2);
 
                 this.context.CurrentStack.Push(el1);
                 this.context.CurrentStack.Push(el2);
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

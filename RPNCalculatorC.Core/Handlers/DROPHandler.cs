@@ -19,11 +19,11 @@ namespace RPNCalculatorC.Core.Handlers
             if(req.Trim().ToLower() == "drop" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.CurrentStack.TryPop(out var el1);
+                //MementoCaretaker.PushToStack(this.context);
             }
-            else
-            {
+            
                 base.Handle(req);
-            }
+            
         }
     }
 }

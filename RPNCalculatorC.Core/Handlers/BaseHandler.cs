@@ -11,6 +11,7 @@ namespace RPNCalculatorC.Core.Handlers
     {
         protected DataContext context { get; set; }
         private IHandler next { get; set; }
+        protected bool isFirst { get; set; }
         public BaseHandler(DataContext dataContext)
         {
             context = dataContext;
@@ -21,6 +22,13 @@ namespace RPNCalculatorC.Core.Handlers
             if(this.next != null)
             {
                 this.next.Handle(req);
+            }
+            else
+            {
+                if ((req.Trim().ToLower() != "undo") && (req.Trim().ToLower() != "redo"))
+                {
+                    MementoCaretaker.PushToStack(context);
+                }
             }
         }
 
