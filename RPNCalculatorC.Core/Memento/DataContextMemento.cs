@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Strategy;
 
 namespace RPNCalculatorC.Core.Memento
 {
@@ -15,7 +16,10 @@ namespace RPNCalculatorC.Core.Memento
             newState.CurrentStack = new Stack<string>(new Stack<string>(state.CurrentStack));
             newState.sb = new StringBuilder(state.sb.ToString());
             newState.Storage = state.Storage.ToArray();
-            //newState.ViewStack = state.ViewStack.ToArray();
+
+            newState.Calculator = new Calculator();
+            newState.Calculator.SetStrategy(state.Calculator.Strategy);
+            newState.Calculator.SetState(state.Calculator.State);
 
             _state = newState;
         }

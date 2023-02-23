@@ -24,7 +24,6 @@ namespace RPNCalculatorC.Core.Handlers
 
             else if (Operators.Contains(req) && base.context.CurrentStack.Count >= 2 && this.context.Calculator.State == CalculatorState.Normal)
             {
-                var eval = new Evaluator();
                 this.context.CurrentStack.Push(req);
 
                 var res = this.context.Calculator.Evaluator.Evaluate(this.context.CurrentStack).ToString();

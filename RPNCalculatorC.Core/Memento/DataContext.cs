@@ -31,6 +31,7 @@ namespace RPNCalculatorC.Core.Memento
             this.CurrentStack = state.CurrentStack;
             this.sb = state.sb;
             this.Storage = state.Storage;
+            this.Calculator = state.Calculator;
             //this.ViewStack = state.ViewStack;
 
         }

@@ -24,10 +24,10 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 this.context.Calculator.SetStrategy(new NormalStrategy());
             }
-            else if(req.Trim().ToLower() == "save")
+            /*else if(req.Trim().ToLower() == "save")
             {
                 this.context.Calculator.SetState(CalculatorState.Store);
-            }
+            }*/
             
                 base.Handle(req);
             

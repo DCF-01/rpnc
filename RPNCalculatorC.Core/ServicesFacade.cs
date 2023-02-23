@@ -13,6 +13,7 @@ namespace RPNCalculatorC.Core
             if (req.Trim().ToLower() == "reset")
             {
                 ResetAppState();
+                Calc("");
                 return GetViewState();
             }
 
