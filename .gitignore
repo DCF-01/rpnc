@@ -1,4 +1,7 @@
 .idea
 .vs
 
-./**/bin
+RPNCalculatorC.Core/bin
+RPNCalculatorC.Core/obj
+RPNCalculatorC/obj
+RPNCalculatorC/bin
