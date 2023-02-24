@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RPNCalculatorC.Core.Memento;
+﻿using RPNCalculatorC.Core.Memento;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -25,22 +21,17 @@ namespace RPNCalculatorC.Core.Handlers
 
             else if (Operators.Contains(req.Value) && base.context.CurrentStack.Count >= 2 && this.context.Calculator.State == CalculatorState.Normal)
             {
-                this.context.CurrentStack.Push(req.Value);
+                var op = new Operator(req.Value);
+                this.context.CurrentStack.Push(op);
 
-                var res = this.context.Calculator.Evaluator.Evaluate(this.context.CurrentStack).ToString();
-                this.context.CurrentStack.Push(res);
+                var res = this.context.Calculator.Evaluator.Evaluate(this.context.CurrentStack);
+                this.context.CurrentStack.Push(new Number res);
                 this.context.sb.Clear();
             }
-            else if(TrigOperators.Contains(req.Value) && base.context.CurrentStack.Count >= 1 
-                && (this.context.Calculator.State == CalculatorState.RAD || this.context.Calculator.State == CalculatorState.DEG))
+            else if(TrigOperators.Contains(req.Value) && base.context.CurrentStack.Count >= 1 )
             {
-                if (this.context.Calculator.State == CalculatorState.DEG)
-                {
-                    var el = this.context.CurrentStack.Pop();
-                    double radians = DegreesToRadians(double.Parse(el));
-                    this.context.CurrentStack.Push(radians.ToString());
-                }
-                
+               
+
                 this.context.CurrentStack.Push(req.Value);
 
                 var res = this.context.Calculator.Evaluator.EvaluateTrig(this.context.CurrentStack).ToString();

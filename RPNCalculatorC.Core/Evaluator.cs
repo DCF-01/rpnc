@@ -1,4 +1,5 @@
 ﻿using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core
 {
@@ -6,7 +7,8 @@ namespace RPNCalculatorC.Core
     {
         public static List<string> Operators = new() { "-", "+", "/", "x", "X", "*" };
         public static List<string> TrigOperators = new() { "sin", "cos", "tan", "asin", "acos", "atan" };
-        
+        public double DegreesToRadians(double el) => (Math.PI / 180) * el;
+
 
         public double EvaluateExpression(List<IRequest> expression)
         {
@@ -23,8 +25,8 @@ namespace RPNCalculatorC.Core
                     var x = stack.Pop();
                     var y = stack.Pop();
 
-                    var calcStack = new Stack<string>();
-                    calcStack.Push(x.ToString());
+                    var calcStack = new Stack<IValue>();
+                    calcStack.Push(x);
                     calcStack.Push(y.ToString());
                     calcStack.Push(expression[i].Value);
 
@@ -35,7 +37,7 @@ namespace RPNCalculatorC.Core
                 {
                     var x = stack.Pop();
 
-                    var calcStack = new Stack<string>();
+                    var calcStack = new Stack<IValue>();
                     calcStack.Push(x.ToString());
                     calcStack.Push(expression[i].Value);
 
@@ -46,13 +48,13 @@ namespace RPNCalculatorC.Core
             return stack.Pop();
         }
 
-        public double Evaluate(Stack<string> stack)
+        public IValue Evaluate(Stack<IValue> stack)
         {
             var op = stack.Pop();
 
-            double x = double.Parse(stack.Pop());
-            double y = double.Parse(stack.Pop());
-            double res = 0;
+            IValue x = stack.Pop();
+            IValue y = stack.Pop();
+            IValue res;
             switch (op.ToString().Trim().ToLower())
             {
                 case "+":
@@ -74,16 +76,21 @@ namespace RPNCalculatorC.Core
             return res;
         }
 
-        public double EvaluateTrig(Stack<string> stack)
+        public IValue EvaluateTrig(Stack<IValue> stack)
         {
             var op = stack.Pop();
-            double x = double.Parse(stack.Pop());
+            IValue x = stack.Pop();
 
-            double res = 0;
+            if(x is Deg)
+            {
+                x = new Rad(DegreesToRadians(x.Value));
+            }
+
+            IValue res;
             switch (op.ToString().Trim().ToLower())
             {
                 case "sin":
-                    res = Math.Sin(x);
+                    res = Math.Sin(x.Value);
                     break;
                 case "cos":
                     res = Math.Cos(x);

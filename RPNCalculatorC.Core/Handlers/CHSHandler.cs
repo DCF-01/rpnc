@@ -17,7 +17,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if(req.Value == "chs" && this.context.CurrentStack.Count >= 1 && this.context.Calculator.State == CalculatorState.Normal)
             {
-                int x = int.Parse(this.context.CurrentStack.Pop()) * -1;
+                int x = double.Parse(this.context.CurrentStack.Pop()) * -1;
                 this.context.CurrentStack.Push(x.ToString());
             }
             

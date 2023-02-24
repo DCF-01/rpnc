@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RPNCalculatorC.Core.Strategy;
-using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core.Memento
 {
@@ -14,7 +10,7 @@ namespace RPNCalculatorC.Core.Memento
         public DataContextMemento(DataContext state)
         {
             var newState = new DataContext();
-            newState.CurrentStack = new Stack<string>(new Stack<string>(state.CurrentStack));
+            newState.CurrentStack = new Stack<IValue>(new Stack<IValue>(state.CurrentStack));
             newState.sb = state.sb.ToList();
             newState.Storage = state.Storage.ToArray();
 

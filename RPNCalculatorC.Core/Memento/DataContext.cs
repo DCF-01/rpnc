@@ -1,11 +1,12 @@
 ﻿using RPNCalculatorC.Core.Strategy;
 using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core.Memento
 {
     public class DataContext
     {
-        public Stack<string> CurrentStack { get; set; } = new();
+        public Stack<IValue> CurrentStack { get; set; } = new();
         public List<IRequest> sb = new();
         public Calculator Calculator = new Calculator();
         public string[] Storage = new string[10];

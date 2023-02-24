@@ -1,6 +1,6 @@
 ﻿using RPNCalculatorC.Core.Handlers;
 using RPNCalculatorC.Core.Memento;
-using RPNCalculatorC.Core.Strategy;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core
 {
@@ -26,16 +26,16 @@ namespace RPNCalculatorC.Core
 
         protected string[] GetViewState(string message = "")
         {
-            var stack = new Stack<string>(new Stack<string>(DataContext.CurrentStack));
+            var stack = new Stack<IValue>(new Stack<IValue>(DataContext.CurrentStack));
             stack.TryPop(out var val1);
             stack.TryPop(out var val2);
             stack.TryPop(out var val3);
 
             return new[] {
                 string.Join("", DataContext.sb.Select(x => x.Value).ToList()),
-                val1 ?? string.Empty,
-                val2 ?? string.Empty,
-                val3 ?? string.Empty,
+                val1.ToString() ?? string.Empty,
+                val2.ToString() ?? string.Empty,
+                val3.ToString() ?? string.Empty,
                 message,
                 DataContext.Calculator.State.ToString()
             };
