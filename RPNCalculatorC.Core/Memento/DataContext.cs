@@ -6,10 +6,10 @@ namespace RPNCalculatorC.Core.Memento
 {
     public class DataContext
     {
-        public Stack<IValue> CurrentStack { get; set; } = new();
-        public List<IRequest> sb = new();
+        public Stack<IValue> ValuesStack { get; set; } = new();
+        public Stack<IValue> sb = new();
         public Calculator Calculator = new Calculator();
-        public string[] Storage = new string[10];
+        public Stack<IValue>[] Storage = new Stack<IValue>[10];
 
         public DataContextMemento Save()
         {
@@ -19,7 +19,7 @@ namespace RPNCalculatorC.Core.Memento
         public void Restore(DataContextMemento memento)
         {
             var state = memento.GetState();
-            this.CurrentStack = state.CurrentStack;
+            this.ValuesStack = state.ValuesStack;
             this.sb = state.sb;
             this.Storage = state.Storage;
             this.Calculator = state.Calculator;

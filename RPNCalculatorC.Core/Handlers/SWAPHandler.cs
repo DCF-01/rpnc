@@ -17,16 +17,16 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Value == "swap" && this.context.Calculator.State == CalculatorState.Normal)
             {
-                if (this.context.CurrentStack.Count < 2)
+                if (this.context.ValuesStack.Count < 2)
                 {
                     return;
                 }
 
-                this.context.CurrentStack.TryPop(out var el1);
-                this.context.CurrentStack.TryPop(out var el2);
+                this.context.ValuesStack.TryPop(out var el1);
+                this.context.ValuesStack.TryPop(out var el2);
 
-                this.context.CurrentStack.Push(el1);
-                this.context.CurrentStack.Push(el2);
+                this.context.ValuesStack.Push(el1);
+                this.context.ValuesStack.Push(el2);
             }
             base.Handle(req);
         }

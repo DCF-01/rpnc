@@ -15,14 +15,11 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(IRequest req)
         {
-            if(req.Value == "chs" && this.context.CurrentStack.Count >= 1 && this.context.Calculator.State == CalculatorState.Normal)
+            if (req.Value == "chs" && this.context.ValuesStack.Count >= 1 && this.context.Calculator.State == CalculatorState.Normal)
             {
-                int x = double.Parse(this.context.CurrentStack.Pop()) * -1;
-                this.context.CurrentStack.Push(x.ToString());
+                this.context.ValuesStack.Peek().ChangeSign();
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

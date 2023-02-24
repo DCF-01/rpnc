@@ -1,6 +1,9 @@
-﻿using RPNCalculatorC.Core.Memento;
-using RPNCalculatorC.Core.Values;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -18,37 +21,15 @@ namespace RPNCalculatorC.Core.Handlers
 
                 if (!string.IsNullOrWhiteSpace(strToPush))
                 {
-                    var res = ParseInput(strToPush);
-                    this.context.CurrentStack.Push(res);
+                    var res = this.context.Calculator.Evaluator.ToSingleValueNumber(this.context.sb);
+                    this.context.ValuesStack.Push(res);
                     this.context.sb.Clear();
                 }
             }
-            base.Handle(req);
-        }
+            
+                base.Handle(req);
+            
 
-        private IValue ParseInput(string inputString)
-        {
-            var first = inputString[0].ToString();
-            if (first == "deg" || first == "rad")
-            {
-                return null;
-            }
-
-            var sb = new StringBuilder();
-            foreach (var chr in inputString)
-            {
-                if (chr.ToString() == "deg")
-                {
-                    return new Deg(double.Parse(sb.ToString()));
-                }
-                else if (chr.ToString() == "rad")
-                {
-                    return new Rad(double.Parse(sb.ToString()));
-                }
-                sb.Append(chr.ToString());
-            }
-
-            return new Number(double.Parse(sb.ToString()));
         }
     }
 }

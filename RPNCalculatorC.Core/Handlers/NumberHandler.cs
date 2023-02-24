@@ -1,4 +1,5 @@
 ﻿using RPNCalculatorC.Core.Memento;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -10,24 +11,34 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(IRequest req)
         {
-            if (int.TryParse(req.Value, out var x))
+            if (double.TryParse(req.Value, out var x))
             {
                 if (this.context.Calculator.State == CalculatorState.Store)
                 {
-                    this.context.Storage[x] = String.Join("", this.context.sb.Select(x => x.Value).ToList());
+                    this.context.Storage[(int)x] = new Stack<IValue>(new Stack<IValue>(this.context.sb));
                     this.context.Calculator.SetState(CalculatorState.Normal);
                 }
                 else if (this.context.Calculator.State == CalculatorState.Recall)
                 {
-                    this.context.sb.Clear();
-                    this.context.sb.Add(new Request(this.context.Storage[x]));
+                    this.context.sb = this.context.Storage[(int)x];
                     this.context.Calculator.SetState(CalculatorState.Normal);
                 }
                 else
                 {
-                    this.context.sb.Add(req);
+                    this.context.sb.Push(new Number(x));
                 }
             }
+            else if (req.Value == "deg" && this.context.sb.Count > 0 && this.context.sb.Peek() is not Deg or Rad) 
+            {
+                var res = this.context.Calculator.Evaluator.ToSingleValueDeg(this.context.sb);
+                this.context.ValuesStack.Push(res);
+            }
+            else if (req.Value == "rad" && this.context.sb.Count > 0 && this.context.sb.Peek() is not Deg or Rad)
+            {
+                var res = this.context.Calculator.Evaluator.ToSingleValueRad(this.context.sb);
+                this.context.ValuesStack.Push(res);
+            }
+
             base.Handle(req);
         }
     }

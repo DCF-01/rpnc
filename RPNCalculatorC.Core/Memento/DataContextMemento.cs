@@ -10,8 +10,8 @@ namespace RPNCalculatorC.Core.Memento
         public DataContextMemento(DataContext state)
         {
             var newState = new DataContext();
-            newState.CurrentStack = new Stack<IValue>(new Stack<IValue>(state.CurrentStack));
-            newState.sb = state.sb.ToList();
+            newState.ValuesStack = new Stack<IValue>(new Stack<IValue>(state.ValuesStack));
+            newState.sb = new Stack<IValue>(new Stack<IValue>(state.sb));
             newState.Storage = state.Storage.ToArray();
 
             newState.Calculator = new Calculator();

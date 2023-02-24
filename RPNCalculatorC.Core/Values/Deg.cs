@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Values
 {
-    public readonly struct Deg : IValue
+    public struct Deg : IValue
     {
-        public readonly double Value { get; }
+        public double Value { get; private set; }
 
         public Deg(double value)
         {
@@ -47,8 +47,12 @@ namespace RPNCalculatorC.Core.Values
 
         public override string ToString()
         {
-            return this.Value.ToString();
+            return this.Value.ToString() + "deg";
         }
 
+        public void ChangeSign()
+        {
+            this.Value *= -1;
+        }
     }
 }

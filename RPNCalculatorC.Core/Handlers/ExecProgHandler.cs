@@ -20,11 +20,9 @@ namespace RPNCalculatorC.Core.Handlers
             {
                 var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.sb);
                 this.context.sb.Clear();
-                this.context.sb.Add(new Request(res.ToString()));
+                this.context.sb.Push(res);
             }
-            
-                base.Handle(req);
-            
+            base.Handle(req);
         }
     }
 }

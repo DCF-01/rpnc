@@ -1,5 +1,6 @@
 ﻿using RPNCalculatorC.Core.Handlers;
 using RPNCalculatorC.Core.Values;
+using System.Text;
 
 namespace RPNCalculatorC.Core
 {
@@ -10,38 +11,45 @@ namespace RPNCalculatorC.Core
         public double DegreesToRadians(double el) => (Math.PI / 180) * el;
 
 
-        public double EvaluateExpression(List<IRequest> expression)
+        public IValue EvaluateExpression(Stack<IValue> stack)
         {
-            var stack = new Stack<double>();
+            var operands = new Stack<IValue>();
 
-            for (int i = 0; i < expression.Count; i++)
+            while (stack.Count > 0)
             {
-                if (double.TryParse(expression[i].Value, out var res))
+                var token = stack.Pop();
+
+                if (token is not Operator)
                 {
-                    stack.Push(res);
+                    stack.Push(token);
                 }
-                else if(Operators.Contains(expression[i].Value))
+                else
                 {
-                    var x = stack.Pop();
-                    var y = stack.Pop();
+                    string op = ((Operator)token).StringValue;
 
-                    var calcStack = new Stack<IValue>();
-                    calcStack.Push(x);
-                    calcStack.Push(y.ToString());
-                    calcStack.Push(expression[i].Value);
+                    if (Operators.Contains(op))
+                    {
+                        var x = stack.Pop();
+                        var y = stack.Pop();
+
+                        var calcStack = new Stack<IValue>();
+                        calcStack.Push(x);
+                        calcStack.Push(y);
+                        calcStack.Push(token);
 
 
-                    stack.Push(Evaluate(calcStack));
-                }
-                else if (TrigOperators.Contains(expression[i].Value))
-                {
-                    var x = stack.Pop();
+                        stack.Push(Evaluate(calcStack));
+                    }
+                    else if (TrigOperators.Contains(op))
+                    {
+                        var x = stack.Pop();
 
-                    var calcStack = new Stack<IValue>();
-                    calcStack.Push(x.ToString());
-                    calcStack.Push(expression[i].Value);
+                        var calcStack = new Stack<IValue>();
+                        calcStack.Push(x);
+                        calcStack.Push(token);
 
-                    stack.Push(EvaluateTrig(calcStack));
+                        stack.Push(EvaluateTrig(calcStack));
+                    }
                 }
             }
 
@@ -50,12 +58,12 @@ namespace RPNCalculatorC.Core
 
         public IValue Evaluate(Stack<IValue> stack)
         {
-            var op = stack.Pop();
+            var op = (Operator)stack.Pop();
 
             IValue x = stack.Pop();
             IValue y = stack.Pop();
             IValue res;
-            switch (op.ToString().Trim().ToLower())
+            switch (op.StringValue)
             {
                 case "+":
                     res = x + y;
@@ -78,41 +86,107 @@ namespace RPNCalculatorC.Core
 
         public IValue EvaluateTrig(Stack<IValue> stack)
         {
-            var op = stack.Pop();
+            Operator op = (Operator)stack.Pop();
             IValue x = stack.Pop();
 
-            if(x is Deg)
+            if (x is Deg)
             {
                 x = new Rad(DegreesToRadians(x.Value));
             }
 
-            IValue res;
-            switch (op.ToString().Trim().ToLower())
+            double res;
+            switch (op.StringValue)
             {
                 case "sin":
                     res = Math.Sin(x.Value);
                     break;
                 case "cos":
-                    res = Math.Cos(x);
+                    res = Math.Cos(x.Value);
                     break;
                 case "tan":
-                    res = Math.Tan(x);
+                    res = Math.Tan(x.Value);
                     break;
                 case "asin":
-                    res = Math.Asin(x);
+                    res = Math.Asin(x.Value);
                     break;
                 case "acos":
-                    res = Math.Acos(x);
+                    res = Math.Acos(x.Value);
                     break;
                 case "atan":
-                    res = Math.Atan(x);
+                    res = Math.Atan(x.Value);
                     break;
                 default:
                     throw new ArgumentException("not an operand or operator");
             }
 
-            return res;
+            return new Rad(res);
         }
 
+        //evaluate the expression stack
+        public IValue ToSingleValueNumber(Stack<IValue> stack)
+        {
+            var tempStack = new Stack<IValue>();
+
+            var sb = new Queue<string>();
+            while (stack.Count > 0)
+            {
+                var token = stack.Pop();
+
+                if (token is Deg or Rad)
+                {
+                    break;
+                }
+                else
+                {
+                    sb.Prepend(token.Value.ToString());
+                }
+            }
+
+            return new Deg(double.Parse(string.Join("", sb.ToList())));
+        }
+
+        public IValue ToSingleValueDeg(Stack<IValue> stack)
+        {
+            var tempStack = new Stack<IValue>();
+
+            var sb = new Queue<string>();
+            while (stack.Count > 0)
+            {
+                var token = stack.Pop();
+
+                if (token is Deg or Rad)
+                {
+                    break;
+                }
+                else
+                {
+                    sb.Prepend(token.Value.ToString());
+                }
+            }
+
+            return new Deg(double.Parse(string.Join("", sb.ToList())));
+        }
+
+        public IValue ToSingleValueRad(Stack<IValue> stack)
+        {
+            var tempStack = new Stack<IValue>();
+
+            var sb = new Queue<string>();
+            while (stack.Count > 0)
+            {
+                var token = stack.Pop();
+
+                if (token is Deg or Rad)
+                {
+                    break;
+                }
+                else
+                {
+                    sb.Prepend(token.Value.ToString());
+                }
+            }
+
+            return new Rad(double.Parse(string.Join("", sb.ToList())));
+        }
     }
 }

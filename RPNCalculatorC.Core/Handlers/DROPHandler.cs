@@ -17,7 +17,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if(req.Value == "drop" && this.context.Calculator.State == CalculatorState.Normal)
             {
-                this.context.CurrentStack.TryPop(out var el);
+                this.context.ValuesStack.TryPop(out var el);
             }
             
             base.Handle(req);

@@ -11,8 +11,6 @@ namespace RPNCalculatorC.Core
         Normal,
         PROG,
         Store,
-        Recall,
-        RAD,
-        DEG
+        Recall
     }
 }

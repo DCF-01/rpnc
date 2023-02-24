@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Values
 {
-    public readonly struct Rad : IValue
+    public struct Rad : IValue
     {
-        public readonly double Value;
+        public double Value { get; private set; }
 
         public Rad(double value)
         {
@@ -48,7 +48,12 @@ namespace RPNCalculatorC.Core.Values
 
         public override string ToString()
         {
-            return this.Value.ToString();
+            return this.Value.ToString() + "rad";
+        }
+
+        public void ChangeSign()
+        {
+            this.Value *= -1;
         }
     }
 }

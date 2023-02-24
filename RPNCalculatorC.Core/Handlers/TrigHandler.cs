@@ -1,9 +1,5 @@
 ﻿using RPNCalculatorC.Core.Memento;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RPNCalculatorC.Core.Values;
 
 namespace RPNCalculatorC.Core.Handlers
 {
@@ -14,7 +10,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
         }
 
-        public void Handle(IRequest req)
+        /*public void Handle(IRequest req)
         {
             if (req.Value == "rad")
             {
@@ -37,6 +33,23 @@ namespace RPNCalculatorC.Core.Handlers
                 {
                     this.context.Calculator.SetState(CalculatorState.DEG);
                 }
+            }
+
+            base.Handle(req);
+
+        }*/
+
+        public void Handle(IRequest req)
+        {
+            if (req.Value == "deg" && this.context.ValuesStack.Count > 1 && this.context.sb.Peek() is not Deg or Rad)
+            {
+                var res = this.context.Calculator.Evaluator.ToSingleValueDeg(this.context.sb);
+                this.context.ValuesStack.Push(res);
+            }
+            else if (req.Value == "rad" && this.context.ValuesStack.Count > 1 && this.context.sb.Peek() is not Deg or Rad)
+            {
+                var res = this.context.Calculator.Evaluator.ToSingleValueRad(this.context.sb);
+                this.context.ValuesStack.Push(res);
             }
 
             base.Handle(req);

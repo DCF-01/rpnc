@@ -13,5 +13,6 @@ namespace RPNCalculatorC.Core.Values
         public static IValue operator -(IValue a, IValue b) => a - b;
         public static IValue operator /(IValue a, IValue b) => a / b;
         public static IValue operator *(IValue a, IValue b) => a * b;
+        public void ChangeSign();
     }
 }

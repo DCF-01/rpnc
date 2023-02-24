@@ -16,5 +16,7 @@ namespace RPNCalculatorC.Core.Values
             StringValue = value;
             Value = 0;
         }
+
+        public void ChangeSign(){}
     }
 }

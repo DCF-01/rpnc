@@ -17,7 +17,7 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Value == "CE")
             {
-                this.context.CurrentStack.Clear();
+                this.context.ValuesStack.Clear();
                 this.context.sb.Clear();
                 //MementoCaretaker.PushToStack(this.context);
             }

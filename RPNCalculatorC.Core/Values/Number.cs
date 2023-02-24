@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Values
 {
-    public readonly struct Number : IValue
+    public struct Number : IValue
     {
-        public readonly double Value { get; }
+        public  double Value { get; private set; }
         public Number(double val)
         {
             Value = val;
@@ -17,6 +17,11 @@ namespace RPNCalculatorC.Core.Values
         public override string ToString()
         {
             return this.Value.ToString();
+        }
+
+        public void ChangeSign()
+        {
+            this.Value *= -1;
         }
     }
 }
