@@ -8,6 +8,10 @@ using RPNCalculatorC.Core.Handlers;
 
 namespace RPNCalculatorC.Core.Memento
 {
+    /// <summary>
+    /// Stores the intance of DataContext in the _state field
+    /// Provides a way to restore / get that state
+    /// </summary>
     public class DataContextMemento
     {
         private DataContext _state;
@@ -15,14 +19,14 @@ namespace RPNCalculatorC.Core.Memento
         {
             var newState = new DataContext();
             newState.CurrentStack = new Stack<string>(new Stack<string>(state.CurrentStack));
-            newState.sb = state.sb.ToList();
+            newState.DisplayInput = state.DisplayInput.ToList();
             newState.Storage = state.Storage.ToArray();
             newState.RequestObservable = state.RequestObservable;
 
             newState.Calculator = new Calculator();
             newState.Calculator.SetStrategy(state.Calculator.Strategy);
             newState.Calculator.SetState(state.Calculator.State);
-
+            newState.Calculator.SetInputState(state.Calculator.Evaluator.InputState);
 
             _state = newState;
         }

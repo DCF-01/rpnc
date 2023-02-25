@@ -5,9 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Handlers.Interfaces;
 
 namespace RPNCalculatorC.Core.Strategy
 {
+    /// <summary>
+    /// The execution strategy for Prog mode, setup the chained handlers
+    /// </summary>
     public class ProgStrategy : IStrategy
     {
         public void Execute(DataContext dataContext, IRequest req)
@@ -19,6 +23,7 @@ namespace RPNCalculatorC.Core.Strategy
             var execProgHandler = new ExecProgHandler(dataContext);
             var UNDOHandler = new UNDOHandler(dataContext);
             var REDOHandler = new REDOHandler(dataContext);
+            var TrigHandler = new TrigHandler(dataContext);
             var UpdateDisplayHandler = new UpdateDisplayHandler(dataContext);
 
             stateHandler.SetNext(ceHandler);
@@ -27,7 +32,8 @@ namespace RPNCalculatorC.Core.Strategy
             operatorHandler.SetNext(execProgHandler);
             execProgHandler.SetNext(UNDOHandler);
             UNDOHandler.SetNext(REDOHandler);
-            REDOHandler.SetNext(UpdateDisplayHandler);
+            REDOHandler.SetNext(TrigHandler);
+            TrigHandler.SetNext(UpdateDisplayHandler);
 
             stateHandler.Handle(req);
         }

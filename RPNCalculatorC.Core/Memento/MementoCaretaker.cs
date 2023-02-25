@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Memento
 {
+    /// <summary>
+    /// Singleton that manages the memento stacks
+    /// Provides Reset() to reset the entire singleton and ResetUndo() to clear 
+    /// the _redo stack when a user performs an action after several UNDO actions
+    /// </summary>
     public class MementoCaretaker
     {
         private static object _lock = new object();

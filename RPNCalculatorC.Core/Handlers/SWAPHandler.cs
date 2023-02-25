@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RPNCalculatorC.Core.Handlers.Interfaces;
 using RPNCalculatorC.Core.Memento;
+using RPNCalculatorC.Core.Strategy.Enums;
 
 namespace RPNCalculatorC.Core.Handlers
 {
+    /// <summary>
+    /// Swap the positions of the last two items at the top of the stack
+    /// </summary>
     public class SWAPHandler : BaseHandler, IHandler
     {
         public SWAPHandler(DataContext dataContext) : base(dataContext)

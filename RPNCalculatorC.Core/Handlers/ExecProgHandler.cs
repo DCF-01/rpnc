@@ -1,4 +1,6 @@
-﻿using RPNCalculatorC.Core.Memento;
+﻿using RPNCalculatorC.Core.Handlers.Interfaces;
+using RPNCalculatorC.Core.Memento;
+using RPNCalculatorC.Core.Strategy.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
-    internal class ExecProgHandler : BaseHandler, IHandler
+    /// <summary>
+    /// Execute the Prog input string and display the result
+    /// </summary>
+    public class ExecProgHandler : BaseHandler, IHandler
     {
         public ExecProgHandler(DataContext dataContext) : base(dataContext)
         {
@@ -17,9 +22,9 @@ namespace RPNCalculatorC.Core.Handlers
         {
             if (req.Value == "exec" && this.context.Calculator.State == CalculatorState.PROG)
             {
-                var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.sb);
-                this.context.sb.Clear();
-                this.context.sb.Add(new Request(res.ToString()));
+                var res = this.context.Calculator.Evaluator.EvaluateExpression(this.context.DisplayInput);
+                this.context.DisplayInput.Clear();
+                this.context.DisplayInput.Add(new Request(res.ToString()));
             }
             
                 base.Handle(req);

@@ -1,12 +1,18 @@
-﻿using RPNCalculatorC.Core.Handlers;
+﻿using RPNCalculatorC.Core.Handlers.Interfaces;
+using RPNCalculatorC.Core.Strategy.Enums;
 
-namespace RPNCalculatorC.Core
+namespace RPNCalculatorC.Core.Strategy
 {
+    /// <summary>
+    /// Holds the logic for evaluating an expression, and
+    /// evaluating the result of a single normal or trig operation
+    /// applied to a stack 
+    /// </summary>
     public class Evaluator
     {
         public static List<string> Operators = new() { "-", "+", "/", "x", "X", "*" };
         public static List<string> TrigOperators = new() { "sin", "cos", "tan", "asin", "acos", "atan" };
-        
+        public InputState InputState { get; private set; } = InputState.STD;
 
         public double EvaluateExpression(List<IRequest> expression)
         {
@@ -79,8 +85,13 @@ namespace RPNCalculatorC.Core
             var op = stack.Pop();
             double x = double.Parse(stack.Pop());
 
+            if (InputState == InputState.DEG)
+            {
+                x = DegreesToRadians(x);
+            }
+
             double res = 0;
-            switch (op.ToString().Trim().ToLower())
+            switch (op)
             {
                 case "sin":
                     res = Math.Sin(x);
@@ -106,6 +117,13 @@ namespace RPNCalculatorC.Core
 
             return res;
         }
+
+        public void SetInputState(InputState inputState)
+        {
+            InputState = inputState;
+        }
+
+        private double DegreesToRadians(double el) => (Math.PI / 180) * el;
 
     }
 }

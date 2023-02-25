@@ -1,4 +1,5 @@
-﻿using RPNCalculatorC.Core.Memento;
+﻿using RPNCalculatorC.Core.Handlers.Interfaces;
+using RPNCalculatorC.Core.Memento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
+    /// <summary>
+    /// Call the memento caretaker and restore the redo stack state
+    /// </summary>
     public class REDOHandler : BaseHandler, IHandler
     {
         public REDOHandler(DataContext dataContext) : base(dataContext)

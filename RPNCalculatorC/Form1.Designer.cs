@@ -70,6 +70,8 @@
             this.button35 = new System.Windows.Forms.Button();
             this.button36 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -474,11 +476,29 @@
             this.richTextBox7.TabIndex = 45;
             this.richTextBox7.Text = "";
             // 
+            // richTextBox8
+            // 
+            this.richTextBox8.Location = new System.Drawing.Point(817, 65);
+            this.richTextBox8.Name = "richTextBox8";
+            this.richTextBox8.Size = new System.Drawing.Size(106, 48);
+            this.richTextBox8.TabIndex = 46;
+            this.richTextBox8.Text = "";
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Location = new System.Drawing.Point(817, 36);
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox3.TabIndex = 47;
+            this.maskedTextBox3.Text = "Input State:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 748);
+            this.Controls.Add(this.maskedTextBox3);
+            this.Controls.Add(this.richTextBox8);
             this.Controls.Add(this.richTextBox7);
             this.Controls.Add(this.button36);
             this.Controls.Add(this.button35);
@@ -572,5 +592,7 @@
         private Button button35;
         private Button button36;
         private RichTextBox richTextBox7;
+        private RichTextBox richTextBox8;
+        private MaskedTextBox maskedTextBox3;
     }
 }

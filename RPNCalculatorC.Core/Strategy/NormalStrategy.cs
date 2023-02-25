@@ -1,8 +1,12 @@
 ﻿using RPNCalculatorC.Core.Memento;
 using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Handlers.Interfaces;
 
 namespace RPNCalculatorC.Core.Strategy
 {
+    /// <summary>
+    /// The execution strategy for Normal mode, setup the chained handlers
+    /// </summary>
     public class NormalStrategy : IStrategy
     {
         public void Execute(DataContext dataContext, IRequest req)

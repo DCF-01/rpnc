@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Observer
 {
+    /// <summary>
+    /// Observable interface, methods for notifying observers and registering and removing them
+    /// </summary>
     public interface IObservable
     {
         void NotifyObservers();

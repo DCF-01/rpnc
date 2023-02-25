@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPNCalculatorC.Core.Handlers
+namespace RPNCalculatorC.Core.Handlers.Interfaces
 {
     public interface IHandler
     {

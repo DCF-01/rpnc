@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculatorC.Core.Handlers.Interfaces;
 using RPNCalculatorC.Core.Memento;
 
 namespace RPNCalculatorC.Core.Handlers
@@ -18,8 +19,7 @@ namespace RPNCalculatorC.Core.Handlers
             if (req.Value == "ce")
             {
                 this.context.CurrentStack.Clear();
-                this.context.sb.Clear();
-                //MementoCaretaker.PushToStack(this.context);
+                this.context.DisplayInput.Clear();
             }
             
             base.Handle(req);

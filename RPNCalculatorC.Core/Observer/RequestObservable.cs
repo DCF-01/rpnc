@@ -1,6 +1,9 @@
 ﻿
 namespace RPNCalculatorC.Core.Observer
 {
+    /// <summary>
+    /// Observable class, implements methods for notifying observers and registering and removing them
+    /// </summary>
     public class RequestObservable : IObservable
     {
         List<IObserver> _observers = new();
