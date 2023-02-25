@@ -7,7 +7,6 @@ namespace RPNCalculatorC.Core.Strategy
     {
         public void Execute(DataContext dataContext, IRequest req)
         {
-            var entryHandler = new EntryHandler(dataContext);
             var trigHandler = new TrigHandler(dataContext);
             var stateHandler = new StateHandler(dataContext);
             var CEHandler = new CEHandler(dataContext);
@@ -21,8 +20,8 @@ namespace RPNCalculatorC.Core.Strategy
             var RCLHandler = new RCLHandler(dataContext);
             var UNDOHandler = new UNDOHandler(dataContext);
             var REDOHandler = new REDOHandler(dataContext);
+            var UpdateDisplayHandler = new UpdateDisplayHandler(dataContext);
 
-            entryHandler.SetNext(trigHandler);
             trigHandler.SetNext(stateHandler);
             stateHandler.SetNext(CEHandler);
             CEHandler.SetNext(EnterHandler);
@@ -35,8 +34,10 @@ namespace RPNCalculatorC.Core.Strategy
             STOHandler.SetNext(RCLHandler);
             RCLHandler.SetNext(UNDOHandler);
             UNDOHandler.SetNext(REDOHandler);
+            REDOHandler.SetNext(UpdateDisplayHandler);
 
-            entryHandler.Handle(req);
+
+            trigHandler.Handle(req);
         }
     }
 }

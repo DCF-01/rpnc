@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Memento
 {
-    //Singleton
     public class MementoCaretaker
     {
         private static object _lock = new object();

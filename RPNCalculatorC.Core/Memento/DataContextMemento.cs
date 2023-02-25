@@ -17,10 +17,12 @@ namespace RPNCalculatorC.Core.Memento
             newState.CurrentStack = new Stack<string>(new Stack<string>(state.CurrentStack));
             newState.sb = state.sb.ToList();
             newState.Storage = state.Storage.ToArray();
+            newState.RequestObservable = state.RequestObservable;
 
             newState.Calculator = new Calculator();
             newState.Calculator.SetStrategy(state.Calculator.Strategy);
             newState.Calculator.SetState(state.Calculator.State);
+
 
             _state = newState;
         }

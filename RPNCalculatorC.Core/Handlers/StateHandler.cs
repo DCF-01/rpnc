@@ -16,11 +16,11 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(IRequest req)
         {
-            if (req.Value == "prog")
+            if (req.Value == "prog" && this.context.Calculator.State == CalculatorState.Normal)
             {
                 this.context.Calculator.SetStrategy(new ProgStrategy());
             }
-            else if (req.Value == "normal")
+            else if (req.Value == "prog" && this.context.Calculator.State == CalculatorState.PROG)
             {
                 this.context.Calculator.SetStrategy(new NormalStrategy());
             }

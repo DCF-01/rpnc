@@ -19,6 +19,7 @@ namespace RPNCalculatorC.Core.Strategy
             var execProgHandler = new ExecProgHandler(dataContext);
             var UNDOHandler = new UNDOHandler(dataContext);
             var REDOHandler = new REDOHandler(dataContext);
+            var UpdateDisplayHandler = new UpdateDisplayHandler(dataContext);
 
             stateHandler.SetNext(ceHandler);
             ceHandler.SetNext(numberHandler);
@@ -26,6 +27,7 @@ namespace RPNCalculatorC.Core.Strategy
             operatorHandler.SetNext(execProgHandler);
             execProgHandler.SetNext(UNDOHandler);
             UNDOHandler.SetNext(REDOHandler);
+            REDOHandler.SetNext(UpdateDisplayHandler);
 
             stateHandler.Handle(req);
         }

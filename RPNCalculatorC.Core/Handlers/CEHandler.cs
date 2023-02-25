@@ -15,7 +15,7 @@ namespace RPNCalculatorC.Core.Handlers
 
         public void Handle(IRequest req)
         {
-            if (req.Value == "CE")
+            if (req.Value == "ce")
             {
                 this.context.CurrentStack.Clear();
                 this.context.sb.Clear();

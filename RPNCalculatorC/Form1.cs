@@ -1,30 +1,52 @@
 using RPNCalculatorC.Core;
+using RPNCalculatorC.Core.Observer;
 
 namespace RPNCalculatorC
 {
     public partial class Form1 : Form
     {
-        public static ServicesFacade ServicesFacade = new();
+        private ServicesFacade _servicesFacade = new();
         public static bool Inv = false;
         public Form1()
         {
             InitializeComponent();
-            ServicesFacade.Calc("");
+            if (ServicesFacade.DataContext.RequestObservable == null)
+            {
+                SetupObservable();
+            }
+
+
+            //_servicesFacade.Calc("");
+        }
+
+        private void SetupObservable()
+        {
+            var observable = new RequestObservable();
+            observable.RegisterObserver(new RequestChainObserver(GetViewState));
+            ServicesFacade.DataContext.RequestObservable = observable;
+        }
+
+        private void GetViewState(string message = "")
+        {
+            var stack = new Stack<string>(new Stack<string>(ServicesFacade.DataContext.CurrentStack));
+            stack.TryPop(out var val1);
+            stack.TryPop(out var val2);
+            stack.TryPop(out var val3);
+            stack.TryPop(out var val4);
+
+            richTextBox1.Text = string.Join("", ServicesFacade.DataContext.sb.Select(x => x.Value).ToList());
+            richTextBox2.Text = val1 ?? string.Empty;
+            richTextBox3.Text = val2 ?? string.Empty;
+            richTextBox4.Text = val3 ?? string.Empty;
+            richTextBox5.Text = message;
+            richTextBox6.Text = ServicesFacade.DataContext.Calculator.State.ToString();
+            richTextBox7.Text = val4 ?? string.Empty; ;
         }
 
         private void buttonClick(object sender, EventArgs e)
         {
             var requestStr = (sender as Button).Text;
-            var displayResult = ServicesFacade.Calc(requestStr);
-
-
-            richTextBox1.Text = displayResult[0];
-            richTextBox2.Text = displayResult[1];
-            richTextBox3.Text = displayResult[2];
-            richTextBox4.Text = displayResult[3];
-            richTextBox5.Text = displayResult[4];
-            richTextBox6.Text = displayResult[5];
-
+            this._servicesFacade.Calc(requestStr);
         }
 
         private void buttonToggleInv(object sender, EventArgs e)

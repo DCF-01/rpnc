@@ -9,7 +9,6 @@ namespace RPNCalculatorC.Core.Handlers
 {
     internal class ExecProgHandler : BaseHandler, IHandler
     {
-        public static string[] Operators = new string[] { "s" };
         public ExecProgHandler(DataContext dataContext) : base(dataContext)
         {
         }

@@ -1,5 +1,6 @@
 ﻿using RPNCalculatorC.Core.Strategy;
 using RPNCalculatorC.Core.Handlers;
+using RPNCalculatorC.Core.Observer;
 
 namespace RPNCalculatorC.Core.Memento
 {
@@ -9,6 +10,7 @@ namespace RPNCalculatorC.Core.Memento
         public List<IRequest> sb = new();
         public Calculator Calculator = new Calculator();
         public string[] Storage = new string[10];
+        public IObservable RequestObservable { get; set; }
 
         public DataContextMemento Save()
         {
@@ -22,6 +24,7 @@ namespace RPNCalculatorC.Core.Memento
             this.sb = state.sb;
             this.Storage = state.Storage;
             this.Calculator = state.Calculator;
+            this.RequestObservable = state.RequestObservable;
         }
     }
 }

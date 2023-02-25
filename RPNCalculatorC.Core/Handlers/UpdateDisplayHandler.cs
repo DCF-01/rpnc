@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace RPNCalculatorC.Core.Handlers
 {
-    public class EntryHandler : BaseHandler, IHandler
+    internal class UpdateDisplayHandler : BaseHandler, IHandler
     {
-        public EntryHandler(DataContext dataContext) : base(dataContext)
+        public UpdateDisplayHandler(DataContext dataContext) : base(dataContext)
         {
         }
 
         public void Handle(IRequest req)
         {
-            if ((req.Value != "undo") && (req.Value != "redo"))
-            {
-                //MementoCaretaker.PushToStack(this.context);
-            }
+            this.context.RequestObservable.NotifyObservers();
             base.Handle(req);
+
         }
     }
 }
