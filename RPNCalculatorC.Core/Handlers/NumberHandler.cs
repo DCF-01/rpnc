@@ -28,7 +28,7 @@ namespace RPNCalculatorC.Core.Handlers
                 else if (this.context.Calculator.State == CalculatorState.Recall)
                 {
                     this.context.DisplayInput.Clear();
-                    this.context.DisplayInput.Add(new Request(this.context.Storage[(int)x]));
+                    this.context.DisplayInput.Add(new Request(this.context.Storage[(int)x] ?? string.Empty));
                     this.context.Calculator.SetState(CalculatorState.Normal);
                 }
                 else if (this.context.Calculator.State == CalculatorState.PROG)

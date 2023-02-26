@@ -25,7 +25,6 @@ namespace RPNCalculatorC.Core.Strategy
             var UNDOHandler = new UNDOHandler(dataContext);
             var REDOHandler = new REDOHandler(dataContext);
             var UpdateDisplayHandler = new UpdateDisplayHandler(dataContext);
-            var ResetHandler = new ResetHandler(dataContext);
 
             trigHandler.SetNext(stateHandler);
             stateHandler.SetNext(CEHandler);
@@ -40,8 +39,6 @@ namespace RPNCalculatorC.Core.Strategy
             RCLHandler.SetNext(UNDOHandler);
             UNDOHandler.SetNext(REDOHandler);
             REDOHandler.SetNext(UpdateDisplayHandler);
-            ResetHandler.SetNext(UpdateDisplayHandler);
-
 
             trigHandler.Handle(req);
         }

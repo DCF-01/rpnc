@@ -12,24 +12,20 @@ namespace RPNCalculatorC.Core.Facade
     /// </summary>
     public class ServicesFacade
     {
-        public static DataContext DataContext = new DataContext();
+        public DataContext DataContext = new DataContext();
 
 
         public void Calc(string req)
         {
-            if (string.IsNullOrWhiteSpace(req))
+            if(req.Trim().ToLower() == "reset")
             {
+                ResetAppState();
+                Calc("");
+                ResetAppState();
                 return;
             }
 
             IRequest request = new Request(req.Trim().ToLower());
-
-            if (request.Value == "reset")
-            {
-                ResetAppState();
-                Calc("");
-                return;
-            }
 
             DataContext.Calculator.ExecStrategy(DataContext, request);
         }

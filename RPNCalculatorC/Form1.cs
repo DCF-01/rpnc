@@ -10,7 +10,7 @@ namespace RPNCalculatorC
         public Form1()
         {
             InitializeComponent();
-            if (ServicesFacade.DataContext.RequestObservable == null)
+            if (_servicesFacade.DataContext.RequestObservable == null)
             {
                 SetupObservable();
             }
@@ -23,7 +23,7 @@ namespace RPNCalculatorC
         {
             var observable = new RequestObservable();
             observable.RegisterObserver(new RequestChainObserver(GetViewState));
-            ServicesFacade.DataContext.RequestObservable = observable;
+            _servicesFacade.DataContext.RequestObservable = observable;
         }
 
         /// <summary>
@@ -32,20 +32,20 @@ namespace RPNCalculatorC
         /// <param name="message"></param>
         private void GetViewState(string message = "")
         {
-            var stack = new Stack<string>(new Stack<string>(ServicesFacade.DataContext.CurrentStack));
+            var stack = new Stack<string>(new Stack<string>(_servicesFacade.DataContext.CurrentStack));
             stack.TryPop(out var val1);
             stack.TryPop(out var val2);
             stack.TryPop(out var val3);
             stack.TryPop(out var val4);
 
-            richTextBox1.Text = string.Join("", ServicesFacade.DataContext.DisplayInput.Select(x => x.Value).ToList());
+            richTextBox1.Text = string.Join("", _servicesFacade.DataContext.DisplayInput.Select(x => x.Value).ToList());
             richTextBox2.Text = val1 ?? string.Empty;
             richTextBox3.Text = val2 ?? string.Empty;
             richTextBox4.Text = val3 ?? string.Empty;
             richTextBox5.Text = message;
-            richTextBox6.Text = ServicesFacade.DataContext.Calculator.State.ToString();
+            richTextBox6.Text = _servicesFacade.DataContext.Calculator.State.ToString();
             richTextBox7.Text = val4 ?? string.Empty;
-            richTextBox8.Text = ServicesFacade.DataContext.Calculator.Evaluator.InputState.ToString() ?? string.Empty;
+            richTextBox8.Text = _servicesFacade.DataContext.Calculator.Evaluator.InputState.ToString() ?? string.Empty;
         }
 
         /// <summary>
@@ -55,8 +55,15 @@ namespace RPNCalculatorC
         /// <param name="e"></param>
         private void buttonClick(object sender, EventArgs e)
         {
-            var requestStr = (sender as Button).Text;
-            this._servicesFacade.Calc(requestStr);
+            try
+            {
+                var requestStr = (sender as Button).Text;
+                this._servicesFacade.Calc(requestStr);
+            }
+            catch(Exception ex)
+            {
+                GetViewState(ex.Message);
+            }
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using RPNCalculatorC.Core.Handlers.Interfaces;
 using RPNCalculatorC.Core.Strategy.Enums;
+using System.Text;
 
 namespace RPNCalculatorC.Core.Strategy
 {
@@ -30,8 +31,8 @@ namespace RPNCalculatorC.Core.Strategy
                     var y = stack.Pop();
 
                     var calcStack = new Stack<string>();
-                    calcStack.Push(x.ToString());
                     calcStack.Push(y.ToString());
+                    calcStack.Push(x.ToString());
                     calcStack.Push(expression[i].Value);
 
 
@@ -44,8 +45,6 @@ namespace RPNCalculatorC.Core.Strategy
                     var calcStack = new Stack<string>();
                     calcStack.Push(x.ToString());
                     calcStack.Push(expression[i].Value);
-
-                    stack.Push(EvaluateTrig(calcStack));
                 }
             }
 
@@ -62,16 +61,16 @@ namespace RPNCalculatorC.Core.Strategy
             switch (op.ToString().Trim().ToLower())
             {
                 case "+":
-                    res = x + y;
+                    res = y + x;
                     break;
                 case "-":
-                    res = x - y;
+                    res = y - x;
                     break;
                 case "x":
-                    res = x * y;
+                    res = y * x;
                     break;
                 case "/":
-                    res = x / y;
+                    res = y / x;
                     break;
                 default:
                     throw new ArgumentException("not an operand or operator");
